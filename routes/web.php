@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\WordController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\SynonymController;
@@ -46,6 +47,18 @@ Route::prefix('admin')->middleware('admin')->group(function(){
             'edit' => 'admin.synonyms.edit',
             'update' => 'admin.synonyms.update',
             'destroy' => 'admin.synonyms.destroy',
+        ]
+    ]);
+
+    //plans routes
+    Route::resource('plans', PlanController::class, [
+        'names' => [
+            'index' => 'admin.plans.index',
+            'create' => 'admin.plans.create',
+            'store' => 'admin.plans.store',
+            'edit' => 'admin.plans.edit',
+            'update' => 'admin.plans.update',
+            'destroy' => 'admin.plans.destroy',
         ]
     ]);
 });
