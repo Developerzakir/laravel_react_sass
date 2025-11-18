@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\WordController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\SynonymController;
 use App\Http\Controllers\Admin\DefinitionController;
 
 Route::get('/',[AdminController::class,'login'])->name('admin.login');
@@ -33,6 +34,18 @@ Route::prefix('admin')->middleware('admin')->group(function(){
             'edit' => 'admin.definitions.edit',
             'update' => 'admin.definitions.update',
             'destroy' => 'admin.definitions.destroy',
+        ]
+    ]);
+
+    //synonyms routes
+    Route::resource('synonyms', SynonymController::class, [
+        'names' => [
+            'index' => 'admin.synonyms.index',
+            'create' => 'admin.synonyms.create',
+            'store' => 'admin.synonyms.store',
+            'edit' => 'admin.synonyms.edit',
+            'update' => 'admin.synonyms.update',
+            'destroy' => 'admin.synonyms.destroy',
         ]
     ]);
 });
