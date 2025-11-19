@@ -1,16 +1,20 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { setWordDetails } from '../redux/slices/wordDetailsSlice'
 
-  const persistWordDetails = (word) => {
-        dispatch(setWordDetails(word))
-        clearState()
-
-        if(setSearchTerm) {
-            setSearchTerm('')
-        }
-  }
 
 export default function SearchResults({words,clearState,setSearchTerm}) {
+    const dispatch = useDispatch()
+
+    const persistWordDetails = (word) => {
+         dispatch(setWordDetails(word))
+        clearState()
+
+        if (setSearchTerm) {
+            setSearchTerm('')
+        }
+    }
+
   return (
     <ul className='list-group my-3'>
         {

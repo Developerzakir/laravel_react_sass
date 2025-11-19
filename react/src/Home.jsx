@@ -1,5 +1,6 @@
 import React from 'react'
 import SearchBox from './words/SearchBox'
+import Word from './words/Word'
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
         <div className="row">
           <div className="col-md-12">
             <SearchBox />
-            {/* word details  */}
+            <Word />
           </div>
         </div>
       </div>
