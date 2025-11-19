@@ -1,7 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
+import { axiosRequest} from '../helpers/config'
+import { setMessage,setWordDetails } from '../redux/slices/wordDetailsSlice'
 
 export default function MenuItems() {
+   const dispatch = useDispatch()
+
+  //generate a random word
+     const generateRandomWord   = async (character) => {
+            dispatch(setMessage(''))
+          try{
+              const response = await axiosRequest.get('random/word')
+              dispatch(setWordDetails(response.data.data))  
+          }catch(error){
+              console.log(error);
+          }
+        }
+
   return (
     <div className='d-flex justify-content-center align-items-center'>
           <Link to="/" className="btn btn-white border border-dark 
@@ -29,7 +45,7 @@ export default function MenuItems() {
 
              <button className="btn btn-white border border-dark 
                 border-2 rounded-0 shadow-sm d-flex flex-column align-items-center ms-1"
-                onClick={() => console.log('rand word')}
+                onClick={() =>  generateRandomWord()}
                  disabled={false}
             >
                     <span className="fw-bold">Random</span>
