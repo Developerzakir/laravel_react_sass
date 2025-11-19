@@ -47,7 +47,7 @@ export default function SearchBox() {
         <div className='row my-4'>
          <div className="col-md-12">
             <div className="d-flex justify-content-between">
-                <div className="mb-3 w-">
+                <div className="mb-3 w-50">
                     <input type="text"
                      name="searchTerm"
                      className='form-control p-2 border border-dark border-3 rounded-0'
