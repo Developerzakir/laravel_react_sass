@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 import wordDetailsReducer from "../slices/wordDetailsSlice"
 import storage from 'redux-persist/lib/storage'
+import userReducer from "../slices/userSlice"
 import { 
         persistStore, 
         persistReducer,
@@ -14,7 +15,8 @@ import {
 
 //create the root reducer
 const rootReducer = combineReducers({
-    word: wordDetailsReducer
+    word: wordDetailsReducer,
+    user: userReducer
 })
 
 //create the persist config 

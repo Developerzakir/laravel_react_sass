@@ -16,8 +16,14 @@ Route::middleware('auth:sanctum')->group(function() {
         ];
     });
     Route::post('user/logout', [UserController::class,'logout']);
-
+  
+  
 });
+
+
+//user guest routes
+Route::post('user/register', [UserController::class,'store']);
+Route::post('user/login', [UserController::class,'auth']);
 
 //word routes
 Route::get('words/{searchTerm}/find', [WordController::class,'findWordByTerm']);
