@@ -1,12 +1,23 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WordController;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+
+Route::middleware('auth:sanctum')->group(function() {
+    //user routes
+    Route::get('user', function (Request $request) {
+        return [
+            'user' => UserResource::make($request->user()),
+            'access_token' => $request->bearerToken()
+        ];
+    });
+    Route::post('user/logout', [UserController::class,'logout']);
+
+});
 
 //word routes
 Route::get('words/{searchTerm}/find', [WordController::class,'findWordByTerm']);
