@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchBox from './words/SearchBox'
 import Word from './words/Word'
+import MenuItems from './layouts/MenuItems'
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       </div>
 
       <div className="card-footer bg-white">
-
+        <MenuItems />
       </div>
     </div>
   )
