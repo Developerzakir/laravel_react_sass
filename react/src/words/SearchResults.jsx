@@ -1,14 +1,17 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setWordDetails } from '../redux/slices/wordDetailsSlice'
+import { decrementUserHearts } from '../redux/slices/userSlice'
 
 
 export default function SearchResults({words,clearState,setSearchTerm}) {
     const dispatch = useDispatch()
+    const { token } = useSelector(state => state.user)
 
     const persistWordDetails = (word) => {
-         dispatch(setWordDetails(word))
-        clearState()
+            dispatch(setWordDetails(word))
+            dispatch(decrementUserHearts(token)) 
+            clearState()
 
         if (setSearchTerm) {
             setSearchTerm('')

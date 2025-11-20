@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import axios from 'axios'
 import { setMessage } from '../redux/slices/wordDetailsSlice'
 import { useDebounce } from 'use-debounce'
 import { axiosRequest } from '../helpers/config'
 import SearchResults from './SearchResults'
+import TopRightMenu from '../layouts/TopRightMenu'
 
 export default function SearchBox() {
     const [words, setWords] = useState([])
@@ -12,6 +12,7 @@ export default function SearchBox() {
     const { message } = useSelector(state => state.word)
     const dispatch = useDispatch()
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
+    const { isLoggedIn, user } = useSelector(state => state.user)
 
     //find words by search terms
     useEffect(()=>{
@@ -54,7 +55,7 @@ export default function SearchBox() {
                      value={searchTerm}
                      onChange={(e)=>setSearchTerm(e.target.value)}
                      placeholder="let's find your word"
-                     disabled={false}
+                     disabled={!isLoggedIn || isLoggedIn && user?.number_of_hearts === 0}
                      />
                      {
                         message ? 
@@ -72,7 +73,7 @@ export default function SearchBox() {
                          />
                      }
                 </div>
-                {/* right menu  */}
+                <TopRightMenu />
             </div>
          </div>
         </div>

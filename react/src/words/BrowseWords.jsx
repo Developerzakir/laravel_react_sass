@@ -7,11 +7,13 @@ import SearchResults from './SearchResults'
 import Word from './Word'
 import { alphabetsList } from '../helpers/alphabetsList'
 import MenuItems from '../layouts/MenuItems'
+import TopRightMenu from '../layouts/TopRightMenu'
 
 export default function BrowseWords() {
     const [words, setWords] = useState([])
     const { message } = useSelector(state => state.word)
     const dispatch = useDispatch()
+    const { isLoggedIn, user } = useSelector(state => state.user)
 
     //find words by letter
          const findWordByCharacter  = async (character) => {
@@ -47,14 +49,14 @@ export default function BrowseWords() {
                                         <button className="btn btn-sm btn-dark rounded-0 me-1 mb-1"
                                             key={index}
                                             onClick={() => findWordByCharacter(alphabet)}
-                                            disabled={false}
+                                            disabled={!isLoggedIn || isLoggedIn && user?.number_of_hearts === 0}
                                         >
                                             { alphabet }
                                         </button>
                                     ))
                                 }
                             </div>
-                           
+                           <TopRightMenu />
                         </div>
                         <div className="row">
                             <div className="col-md-6 mx-auto">

@@ -16,6 +16,7 @@ Route::middleware('auth:sanctum')->group(function() {
         ];
     });
     Route::post('user/logout', [UserController::class,'logout']);
+    Route::get('user/decrement/hearts', [UserController::class,'decrementUserHearts']);
   
   
 });

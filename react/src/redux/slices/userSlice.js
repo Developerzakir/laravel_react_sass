@@ -8,6 +8,15 @@ const initialState = {
     chosenPlan: null
 }
 
+//decrement user hearts action
+export const decrementUserHearts = createAsyncThunk(
+    'decrement/hearts',
+    async (token) => {
+        const response = await axiosRequest.get('user/decrement/hearts',getConfig(token))
+        return response.data.user
+    }
+)
+
 
 
 export const userSlice = createSlice({
@@ -26,6 +35,11 @@ export const userSlice = createSlice({
         setChosenPlan(state, action) {
             state.chosenPlan = action.payload
         }
+    },
+       extraReducers: (builder) => {
+        builder.addCase(decrementUserHearts.fulfilled, (state,action) => {
+            state.user = action.payload
+        })
     }
 })
 

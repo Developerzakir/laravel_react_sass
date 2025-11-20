@@ -63,5 +63,14 @@ class UserController extends Controller
     /**
      * Decrement user number of hearts
      */
+
+    public function decrementUserHearts(Request $request)
+    {
+        $user = $request->user();
+        $user->decrement('number_of_hearts');
+        return response()->json([
+            'user' => UserResource::make($user)
+        ]);
+    }
  
 }

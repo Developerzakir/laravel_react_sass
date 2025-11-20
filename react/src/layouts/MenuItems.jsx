@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import { axiosRequest,getConfig } from '../helpers/config'
 import { setMessage,setWordDetails } from '../redux/slices/wordDetailsSlice'
-import { setCurrentUser, setToken, setLoggedInOut } from '../redux/slices/userSlice'
+import { setCurrentUser, setToken, setLoggedInOut,decrementUserHearts } from '../redux/slices/userSlice'
 
 
 export default function MenuItems() {
@@ -48,7 +48,8 @@ export default function MenuItems() {
             dispatch(setMessage(''))
           try{
               const response = await axiosRequest.get('random/word')
-              dispatch(setWordDetails(response.data.data))  
+               dispatch(setWordDetails(response.data.data)) 
+               dispatch(decrementUserHearts(token)) 
           }catch(error){
               console.log(error);
           }
