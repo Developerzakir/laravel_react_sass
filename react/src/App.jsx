@@ -5,6 +5,7 @@ import Register from "./auth/Register";
 import BrowseWords from "./words/BrowseWords";
 import Plans from "./plans/Plans";
 import UserProfile from "./profile/UserProfile";
+import PageNotFound from "./404/PageNotFound";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
     {
       path: "/profile",
       element: <UserProfile />,
+    },
+    {
+      path: "*",
+      element: <PageNotFound />,
     },
 ]);
 
