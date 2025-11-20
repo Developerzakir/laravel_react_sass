@@ -19,7 +19,9 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('user/logout', [UserController::class,'logout']);
     Route::get('user/decrement/hearts', [UserController::class,'decrementUserHearts']);
   
-  
+    //subscription routes
+    Route::post('subscribe', [SubscriptionController::class,'create']);
+    Route::post('cancel', [SubscriptionController::class,'cancel']);
 });
 
 
