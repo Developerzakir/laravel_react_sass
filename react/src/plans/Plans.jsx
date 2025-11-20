@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router'
 import { axiosRequest } from '../helpers/config'
 import Spinner from '../layouts/Spinner'
 import { setChosenPlan } from '../redux/slices/userSlice'
+import StripeSubscription from '../subscriptions/StripeSubscription'
 // import StripeSubscription from '../subscriptions/StripeSubscription'
 
 export default function Plans() {
@@ -89,7 +90,7 @@ export default function Plans() {
                         <div className="col-md-6 mx-auto">
                             <div className="card bg-light">
                                 <div className="card-body">
-                                    {/* StripeSubscription  */}
+                                    <StripeSubscription />
                                 </div>
                             </div>
                         </div>
