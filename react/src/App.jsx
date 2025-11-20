@@ -4,6 +4,7 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import BrowseWords from "./words/BrowseWords";
 import Plans from "./plans/Plans";
+import UserProfile from "./profile/UserProfile";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     {
       path: "/plans",
       element: <Plans />,
+    },
+    {
+      path: "/profile",
+      element: <UserProfile />,
     },
 ]);
 

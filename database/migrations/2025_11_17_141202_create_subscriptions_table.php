@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamp('current_period_start')->nullable();
             $table->timestamp('current_period_end')->nullable();
              $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-             $table->foreignId('word_id')->constrained()->cascadeOnDelete();
+             $table->foreignId('plan_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
