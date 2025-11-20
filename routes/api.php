@@ -5,6 +5,7 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\WordController;
+use App\Http\Controllers\Api\SubscriptionController;
 
 
 Route::middleware('auth:sanctum')->group(function() {
@@ -30,3 +31,6 @@ Route::post('user/login', [UserController::class,'auth']);
 Route::get('words/{searchTerm}/find', [WordController::class,'findWordByTerm']);
 Route::get('words/{character}/starts', [WordController::class,'findWordStartWith']);
 Route::get('random/word', [WordController::class,'getRandomWord']);
+
+//plans routes
+Route::get('plans', [SubscriptionController::class,'index']);
