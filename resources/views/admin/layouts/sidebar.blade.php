@@ -26,7 +26,7 @@
             </a>
         </li>
         <li>
-            <a href="#" class="nav-link text-white">
+            <a href="{{route('admin.subscriptions.index')}}" class="nav-link text-white">
                 <i class="fa fa-dollar-sign"></i> Subscriptions
             </a>
         </li>

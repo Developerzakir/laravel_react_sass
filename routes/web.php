@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\WordController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\SynonymController;
 use App\Http\Controllers\Admin\DefinitionController;
+use App\Http\Controllers\Admin\SubscriptionController;
 
 Route::get('/',[AdminController::class,'login'])->name('admin.login');
 Route::post('/admin/auth',[AdminController::class,'auth'])->name('admin.auth');
@@ -61,4 +62,7 @@ Route::prefix('admin')->middleware('admin')->group(function(){
             'destroy' => 'admin.plans.destroy',
         ]
     ]);
+
+    //subscriptions routes
+    Route::get('subscriptions', [SubscriptionController::class,'index'])->name('admin.subscriptions.index');
 });

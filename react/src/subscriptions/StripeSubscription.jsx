@@ -3,7 +3,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import SubscriptionForm from './SubscriptionForm'
 
-const stripePromise = loadStripe('publisher key here..')
+const stripePromise = loadStripe('publisher key here.')
 
 const StripeSubscription = () => {
     return (

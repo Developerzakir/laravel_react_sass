@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
+use Carbon\Carbon;
+use Stripe\Stripe;
 use App\Models\Plan;
-use App\Models\Subscription;
-use Illuminate\Http\Request;
 use Stripe\Customer;
 use Stripe\PaymentMethod;
-use Stripe\Stripe;
+use App\Models\Subscription;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Stripe\Subscription as StripeSubscription;
 
 class SubscriptionController extends Controller
@@ -72,14 +73,21 @@ class SubscriptionController extends Controller
             ]);
 
             //store the subscription in the local database
+
+            // subscription start is now
+            $current_period_start = Carbon::now();
+
+            // for 1 month subscription
+            $current_period_end = $current_period_start->copy()->addMonth();
+
             $userSubscription = Subscription::create([
                 'user_id' => $user->id,
                 'plan_id' => $plan->id,
                 'stripe_subscription_id' => $subscription->id,
                 'stripe_status' => $subscription->status,
                 'stripe_plan_id' => $request->price_id,
-                'current_period_start' => $subscription->current_period_start,
-                'current_period_end' => $subscription->current_period_end,
+                 'current_period_start' => $current_period_start,
+                 'current_period_end'   => $current_period_end,
             ]);
 
             //update the user number of hearts
